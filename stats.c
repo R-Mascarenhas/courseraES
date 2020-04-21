@@ -13,14 +13,18 @@
 #include <math.h>
 #include "stats.h"
 
-#define LEN 20
+#define LEN 30
+typedef enum {false,true} bool;
 
 
 void main(){
-    unsigned char numbers[LEN] = {1, 4, 5, 1, 3,
-                                  2, 3, 2, 2, 4,
-                                  0, 4, 5, 3, 1,
-                                  0, 3, 0, 5, 3};
+    unsigned char numbers[LEN] = {123, 42, 113, 182, 42,
+                                  2, 170, 180, 109, 196, 
+                                  123, 17, 136, 49, 42, 
+                                  83, 123, 45, 175, 93, 
+                                  96, 172, 195, 185, 73, 
+                                  73, 97, 149, 13, 43}
+;
     
     print_statistics(numbers, LEN);
 
@@ -111,7 +115,8 @@ unsigned char find_minimum(unsigned char * array, unsigned int length){
 
 void sort_array(unsigned char * array, unsigned int length) {
     
-    char aux, isSorted = 0;
+    char aux;
+    bool isSorted = false;
     int i = 0;
 
     while (!isSorted){
@@ -120,12 +125,12 @@ void sort_array(unsigned char * array, unsigned int length) {
                 aux = *array;
                 *array = *(array+1);
                 *(array+1) = aux;
-                isSorted++;   
+                isSorted = true;   
             }
             array++;
         }
 
         array -= length-1;
-        isSorted = isSorted>0?0:1;
+        isSorted = !isSorted;
     }
 }
