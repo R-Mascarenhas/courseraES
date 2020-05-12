@@ -10,21 +10,18 @@
  */
 
 #include <stdio.h>
-#include <math.h>
 #include "stats.h"
 
-#define LEN 30
+#define LEN 40
 typedef enum {false,true} bool;
 
 
 void main(){
-    unsigned char numbers[LEN] = {123, 42, 113, 182, 42,
-                                  2, 170, 180, 109, 196, 
-                                  123, 17, 136, 49, 42, 
-                                  83, 123, 45, 175, 93, 
-                                  96, 172, 195, 185, 73, 
-                                  73, 97, 149, 13, 43}
-;
+    unsigned char numbers[LEN] = { 34, 201,  190, 154,   8, 194,   2,   6,
+                                   114,  88,  45,  76, 123,  87,  25,  23,
+                                   200, 122, 150,  90,  92,  87, 177, 244,
+                                   201,   6,  12,  60,   8,   2,   5,  67,
+                                     7,  87, 250, 230,  99,   3, 100,  90};
     
     print_statistics(numbers, LEN);
 
@@ -68,7 +65,7 @@ unsigned char find_median(unsigned char * array, unsigned int length){
     if(length%2)
         return (*(array+length/2));
     else 
-        return round((*(array+length/2) + *(array+length/2-1))/2.0);
+        return ((*(array+length/2) + *(array+length/2-1))/2.0);
      
 }
 
@@ -83,7 +80,7 @@ unsigned char find_mean(unsigned char * array, unsigned int length){
     
     mean /= length;
 
-    return round(mean);
+    return (mean);
 
 }
 
