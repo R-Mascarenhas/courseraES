@@ -28,12 +28,6 @@ void main(){
 }
 
 void print_statistics(unsigned char * array, unsigned int length){
-    unsigned char minimum, maximum, mean, median;
-
-    minimum = find_minimum(array,length);
-    maximum = find_maximum(array,length);
-    mean = find_mean(array,length);
-    median = find_median(array, length);
 
     printf("\n\t=================== Statistics ===================\n");
     printf("\nGiven  ");
@@ -41,10 +35,10 @@ void print_statistics(unsigned char * array, unsigned int length){
     sort_array(array,length);
     printf("\nSorted ");
     print_array(array,length);
-    printf("\nMinimum: %d", minimum);
-    printf("\nMaximum: %d", maximum);
-    printf("\nMean: %d", mean);
-    printf("\nMedian: %d\n\n", median);
+    printf("\nMinimum: %d", find_minimum(array,length));
+    printf("\nMaximum: %d", find_maximum(array,length));
+    printf("\nMean: %d", find_mean(array,length));
+    printf("\nMedian: %d\n\n", find_median(array, length));
 
 }
 
@@ -61,17 +55,15 @@ void print_array(unsigned char * array, unsigned int length){
 
 unsigned char find_median(unsigned char * array, unsigned int length){
 
-
     if(length%2)
         return (*(array+length/2));
     else 
-        return ((*(array+length/2) + *(array+length/2-1))/2.0);
-     
+        return ((*(array+length/2) + *(array+length/2-1))/2);
 }
 
 unsigned char find_mean(unsigned char * array, unsigned int length){
-    float mean = 0;
-    char i = 0;
+    int mean = 0;
+    unsigned char i = 0;
     
     for(i = 0; i<length; i++){
         mean += *array;
@@ -80,13 +72,13 @@ unsigned char find_mean(unsigned char * array, unsigned int length){
     
     mean /= length;
 
-    return (mean);
+    return (unsigned char) mean;
 
 }
 
 unsigned char find_maximum(unsigned char * array, unsigned int length){
     
-    int max = *array;
+    unsigned char max = *array;
 
     do{
         max = (*array > max) ? *array : max;
@@ -99,7 +91,7 @@ unsigned char find_maximum(unsigned char * array, unsigned int length){
 
 unsigned char find_minimum(unsigned char * array, unsigned int length){
 
-    int min = *array;
+    unsigned char min = *array;
 
     do{
         min = (*array < min) ? *array : min;
@@ -112,9 +104,8 @@ unsigned char find_minimum(unsigned char * array, unsigned int length){
 
 void sort_array(unsigned char * array, unsigned int length) {
     
-    char aux;
+    unsigned char aux, i;
     bool isSorted = false;
-    int i = 0;
 
     while (!isSorted){
        for(i=0;i<length-1;i++){
